@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        topix.service: redis
+    spec:
+      containers:
+      - env:
+        - name: REDIS_PASSWORD
+          value: {{ .Values.env.redis_password }}
+        image: redis
+        name: redis
+        ports:
+        - containerPort: 6379
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: topix-redis-data
+      restartPolicy: Always
+      volumes:
+      - name: topix-redis-data
+        persistentVolumeClaim:
+          claimName: topix-redis-data
+status: {}

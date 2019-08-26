@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: topix-api
+spec:
+  replicas: {{ .Values.api.replicaCount | default "1" }}
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        topix.service: topix-api
+    spec:
+      containers:
+      - args:
+        - sh
+        - -c
+        - /wait && npm start
+        env:
+        - name: JWT_SECRET
+          value: {{ .Values.env.jwt_secret }}
+        - name: MONGO_DATABASE
+          value: {{ .Values.env.mongo_database }}
+        - name: MONGO_HOST
+          value: mongodb
+        - name: MONGO_PASSWORD
+          value: {{ .Values.env.mongo_password }}
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_USERNAME
+          value: {{ .Values.env.mongo_username }}
+        - name: REDIS_URL
+          value: "redis://redis"
+        - name: REDIS_PASSWORD
+          value: {{ .Values.env.redis_password }}
+        - name: REDIS_PORT
+          value: "6379"
+        - name: WAIT_HOSTS
+          value: "mongodb:27017,redis:6379"
+        name: topix-api
+        image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
+        imagePullPolicy: {{ .Values.api.image.pullPolicy }}
+        resources: {}
+        ports:
+        - containerPort: {{ .Values.api.port }}
+      restartPolicy: Always
+status: {}

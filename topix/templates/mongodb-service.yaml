@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongodb
+spec:
+  ports:
+  - name: "mondb-service-port"
+    port: 27017
+    targetPort: 27017
+  selector:
+    topix.service: mongodb
+status:
+  loadBalancer: {}
