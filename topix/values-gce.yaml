@@ -8,7 +8,9 @@ api:
   image:
     repository: us.gcr.io/prismatic-cider-250922/topix-api
     tag: latest
-    pullPolicy: Never
+    pullPolicy: Always
+  ingress:
+    host: ""
 
 env:
   jwt_secret: T0P1Xjf85h93X1P0T

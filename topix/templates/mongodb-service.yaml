@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: mongodb
 spec:
+  metadata:
+    annotations:
+      timestamp: "{{ date "20060102150405" .Release.Time }}"
   ports:
   - name: "mondb-service-port"
     port: 27017

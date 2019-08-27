@@ -3,6 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: mongodata
 spec:
+  metadata:
+    annotations:
+      timestamp: "{{ date "20060102150400" .Release.Time }}"
   accessModes:
   - ReadWriteOnce
   resources:

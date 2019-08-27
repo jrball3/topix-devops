@@ -10,6 +10,8 @@ spec:
     metadata:
       labels:
         topix.service: redis
+      annotations:
+        timestamp: "{{ date "20060102150405" .Release.Time }}"
     spec:
       containers:
       - env:

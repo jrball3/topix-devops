@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: redis
 spec:
+  metadata:
+    annotations:
+      timestamp: "{{ date "20060102150405" .Release.Time }}"
   ports:
   - name: "redis-service-port"
     port: 6379
