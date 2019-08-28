@@ -2,10 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mongodb
+  annotations:
+    timestamp: "{{ date "20060102150405" .Release.Time }}"
 spec:
-  metadata:
-    annotations:
-      timestamp: "{{ date "20060102150405" .Release.Time }}"
   ports:
   - name: "mondb-service-port"
     port: 27017

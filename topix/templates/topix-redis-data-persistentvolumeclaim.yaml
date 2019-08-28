@@ -4,10 +4,9 @@ metadata:
   labels:
     topix.service: topix-redis-data
   name: topix-redis-data
+  annotations:
+    timestamp: "{{ date "20060102150400" .Release.Time }}"
 spec:
-  metadata:
-    annotations:
-      timestamp: "{{ date "20060102150400" .Release.Time }}"
   accessModes:
   - ReadWriteOnce
   resources:

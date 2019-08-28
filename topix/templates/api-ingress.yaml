@@ -4,13 +4,16 @@ metadata:
   name: topix-api-ingress
   annotations:
     timestamp: "{{ date "20060102150405" .Release.Time }}"
+    kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    #nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
- rules:
- - host: {{ .Values.api.ingress.host }}
-   http:
-     paths:
-     - path: /topix-api/*
-       backend:
-         serviceName: "api-service"
-         servicePort: 80
+  rules:
+  - host: {{ .Values.api.ingress.host }}
+    http:
+      paths:
+      - path: /topix-api
+        backend:
+          serviceName: "api-service"
+          servicePort: 80
