@@ -6,10 +6,9 @@ metadata:
     timestamp: "{{ date "20060102150405" .Release.Time }}"
 spec:
   ports:
-  - name: "mondb-service-port"
-    port: 27017
+  - port: 27017
     targetPort: 27017
   selector:
-    topix.service: mongodb
+    app: mongodb
 status:
   loadBalancer: {}

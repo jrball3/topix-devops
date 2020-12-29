@@ -6,9 +6,11 @@ api:
   replicaCount: 3
   port: 3000
   image:
-    repository: topix-api
+    repository: topix/topix-api
     tag: latest
     pullPolicy: Never
+  ingress:
+    host: ""
 
 env:
   jwt_secret: T0P1Xjf85h93X1P0T
@@ -16,6 +18,7 @@ env:
   mongo_password: topix
   mongo_username: topix_db
   redis_password: redis
+  base_url: "/topix-api"
 
 nameOverride: ""
 fullnameOverride: ""

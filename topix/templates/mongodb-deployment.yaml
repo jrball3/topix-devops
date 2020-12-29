@@ -1,15 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mongodb
 spec:
+  selector:
+    matchLabels:
+      app: mongodb
   replicas: 1
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        topix.service: mongodb
+        app: mongodb
       annotations:
         timestamp: "{{ date "20060102150405" .Release.Time }}"
     spec:

@@ -6,10 +6,9 @@ metadata:
     timestamp: "{{ date "20060102150405" .Release.Time }}"
 spec:
   ports:
-  - name: "redis-service-port"
-    port: 6379
+  - port: 6379
     targetPort: 6379
   selector:
-    topix.service: redis
+    app: redis
 status:
   loadBalancer: {}

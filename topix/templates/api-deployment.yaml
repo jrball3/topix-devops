@@ -1,15 +1,18 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: topix-api
 spec:
+  selector:
+    matchLabels: 
+      app: topix-api
   replicas: {{ .Values.api.replicaCount | default "1" }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        topix.service: topix-api
+        app: topix-api
       annotations:
         timestamp: "{{ date "20060102150405" .Release.Time }}"
     spec:
