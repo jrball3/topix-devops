@@ -18,7 +18,7 @@ env:
   mongo_password: topix
   mongo_username: topix_db
   redis_password: redis
-  base_url: "/topix-api"
+  base_url: ""
 
 nameOverride: ""
 fullnameOverride: ""
